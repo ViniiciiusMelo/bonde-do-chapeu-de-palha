@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/feedFragment"
+        android:title="Feed"
+        android:icon="@drawable/icon_feed"
+        />
+    <item
+        android:id="@+id/dashBoardFragment"
+        android:title="Dash"
+        android:icon="@drawable/icon_dash"
+        />
+    <item
+        android:id="@+id/crieIdeiaFragment"
+        android:title="Ideia"
+        android:icon="@drawable/icon_add"
+        />
+
+    <item
+        android:id="@+id/minhasIdeiasFragment"
+        android:title="Mideias"
+        android:icon="@drawable/icon_minhas"
+
+        />
+</menu>
