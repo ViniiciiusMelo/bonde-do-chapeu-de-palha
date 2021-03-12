@@ -75,7 +75,10 @@ public class CrieIdeiaFragment extends Fragment {
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(getContext(), "Ideia Salva", Toast.LENGTH_SHORT).show();
+                                    if (task.isSuccessful()){
+
+                                        Toast.makeText(getContext(), "Ideia Salva", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override

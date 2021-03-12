@@ -22,5 +22,6 @@ public class ActivityNavi extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this,  R.id.fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+
     }
 }

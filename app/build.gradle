@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.1.1'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
     implementation 'androidx.navigation:navigation-fragment:2.3.3'
     implementation 'androidx.navigation:navigation-ui:2.3.3'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
