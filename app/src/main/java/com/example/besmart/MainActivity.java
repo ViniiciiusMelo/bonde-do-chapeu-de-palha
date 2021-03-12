@@ -52,9 +52,14 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            Intent intent = new Intent(getApplicationContext(),ActivityNavi.class);
-                            startActivity(intent);
+                            if(task.isSuccessful()){
 
+                                Intent intent = new Intent(getApplicationContext(),ActivityNavi.class);
+                                startActivity(intent);
+
+                            }else{
+                                Toast.makeText(MainActivity.this, "Email ou Senha Incorretos", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
