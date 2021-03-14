@@ -7,12 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".CrieIdeiaFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/verdePrinciapl"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="BeSmart"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
 
     <EditText
         android:id="@+id/titlo_text"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/toolbar"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
         android:hint="Título da ideia"

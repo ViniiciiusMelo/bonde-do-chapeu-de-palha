@@ -1,6 +1,7 @@
 package com.example.besmart;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.besmart.models.MinhasIdeiasAdapter;
 import com.example.besmart.models.ModelClass_User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -67,7 +69,9 @@ public class DashBoardFragment extends Fragment {
                     emailusuario.setText(user.getEmail());
                     usuarioNomeSet.setText(user.getName());
 
-                    Toast.makeText(getContext(), "UsuarioEncontrado", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), MinhasIdeiasAdapter.class);
+                    intent.putExtra("NOMEDOUSER",user.getName());
+
                 }else{
                     Toast.makeText(getContext(), "Error ao encontrar Usuario", Toast.LENGTH_SHORT).show();
                 }

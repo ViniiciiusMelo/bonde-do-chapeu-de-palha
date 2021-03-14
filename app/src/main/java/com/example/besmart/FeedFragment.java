@@ -61,8 +61,6 @@ public class FeedFragment extends Fragment {
         rc.setAdapter(adapter);
 
         return v;
-
-
     }
 
     @Override

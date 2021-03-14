@@ -7,13 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".MinhasIdeiasFragment">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/verdePrinciapl"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="BeSmart"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_minhas_ideias"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/toolbar"
         />
 
 </RelativeLayout>

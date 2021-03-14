@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.besmart.MainActivity;
 import com.example.besmart.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         save = findViewById(R.id.button_save);
-        imageUser = findViewById(R.id.photo_field);
         emailUser = findViewById(R.id.email_field);
         senhaUser = findViewById(R.id.password_field);
         nomeUser = findViewById(R.id.name_field);
@@ -61,13 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         sr = storage.getReference();
 
-        imageUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                pegaFoto();
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +82,13 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()){
-
                         Toast.makeText(RegisterActivity.this, "Cadastrado com Sucesso", Toast.LENGTH_SHORT).show();
                         ModelClass_User user = new ModelClass_User(nomeUser.getText().toString(),emailUser.getText().toString(),"Usuario",0,0,"TesteLink");
                         fb.collection("User").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
                             }
                         });
                     }

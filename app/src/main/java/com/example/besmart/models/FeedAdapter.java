@@ -24,7 +24,7 @@ public class FeedAdapter extends FirestoreRecyclerAdapter<ModelClass_Ideia, Feed
 
         holder.nameIdeia.setText(model.getTitulo());
         holder.descripIdeia.setText(model.getDescricao());
-        holder.nomeUser.setText("@Vinicius");
+        holder.nomeUser.setText(model.getDonoDaideia());
 
     }
 

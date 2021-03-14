@@ -12,11 +12,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.besmart.models.ModelClass_Ideia;
+import com.example.besmart.models.ModelClass_User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -28,6 +31,7 @@ public class CrieIdeiaFragment extends Fragment {
     private EditText tituloIdeia;
     private EditText descripIdeia;
     private MaterialButton save;
+    private String nomeUsuario;
 
     public CrieIdeiaFragment() {
         // Required empty public constructor
@@ -54,6 +58,26 @@ public class CrieIdeiaFragment extends Fragment {
         descripIdeia = v.findViewById(R.id.edit_descrip);
         save = v.findViewById(R.id.button_save_ideia);
 
+        DocumentReference dc = fb.collection("User").document(auth.getCurrentUser().getUid());
+        dc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    ModelClass_User user = documentSnapshot.toObject(ModelClass_User.class);
+                    nomeUsuario = user.getName();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Error File", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +92,7 @@ public class CrieIdeiaFragment extends Fragment {
                     descripIdeia.setError("Campo obrigatório");
                 }else{
 
-                    ModelClass_Ideia ideia = new ModelClass_Ideia(tituloIdeia.getText().toString(),descripIdeia.getText().toString(),"Disponivel",data.getTime());
+                    ModelClass_Ideia ideia = new ModelClass_Ideia(tituloIdeia.getText().toString(),descripIdeia.getText().toString(),"Disponivel",data.getTime(),nomeUsuario);
 
                     //pensar melhor e um ID para a Ideia PodeSer O nomeDo Usuario+OnomeDaIdeia
                     fb.collection("User").document(auth.getCurrentUser().getUid()).collection("Ideias").document(ideia.getTitulo()).set(ideia)

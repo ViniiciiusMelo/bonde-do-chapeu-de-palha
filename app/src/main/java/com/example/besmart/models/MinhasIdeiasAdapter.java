@@ -1,5 +1,6 @@
 package com.example.besmart.models;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.besmart.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MinhasIdeiasAdapter extends FirestoreRecyclerAdapter<ModelClass_Ideia, MinhasIdeiasAdapter.IdeiasViewHolder> {
 
@@ -25,14 +31,15 @@ public class MinhasIdeiasAdapter extends FirestoreRecyclerAdapter<ModelClass_Ide
     @Override
     protected void onBindViewHolder(@NonNull IdeiasViewHolder holder, int position, @NonNull ModelClass_Ideia model) {
 
+
         holder.nameIdeia.setText(model.getTitulo());
         holder.descripIdeia.setText(model.getDescricao());
-        holder.nomeUser.setText("@Vinicius");
+        holder.nomeUser.setText(model.getDonoDaideia());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("NOMEDACLICK",model.getTitulo());
+
             }
         });
 

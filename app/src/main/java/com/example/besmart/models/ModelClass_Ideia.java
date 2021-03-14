@@ -8,14 +8,16 @@ public class ModelClass_Ideia {
     private String descricao;
     private String status;
     private long dataInscricao;
+    private String donoDaideia;
 
     public ModelClass_Ideia(){}
 
-    public ModelClass_Ideia(String titulo, String descricao, String status, long dataInscricao) {
+    public ModelClass_Ideia(String titulo, String descricao, String status, long dataInscricao, String donoDaideia) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = status;
         this.dataInscricao = dataInscricao;
+        this.donoDaideia = donoDaideia;
     }
 
     public String getTitulo() {
@@ -48,5 +50,13 @@ public class ModelClass_Ideia {
 
     public void setDataInscricao(long dataInscricao) {
         this.dataInscricao = dataInscricao;
+    }
+
+    public String getDonoDaideia() {
+        return donoDaideia;
+    }
+
+    public void setDonoDaideia(String donoDaideia) {
+        this.donoDaideia = donoDaideia;
     }
 }
