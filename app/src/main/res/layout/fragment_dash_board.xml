@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/FragmentDash"
@@ -7,14 +7,138 @@
     android:layout_height="match_parent"
     tools:context=".DashBoardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DASH BORD IDEIAS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/img_user"
+        android:layout_width="170dp"
+        android:layout_height="200dp"
+        android:src="@drawable/user"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        />
+
+
+
+
+            <TextView
+                android:id="@+id/nome_do_usuario_aqui"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Nome"
+                android:layout_toEndOf="@id/img_user"
+                android:layout_alignTop="@id/img_user"
+                android:layout_marginTop="40dp"
+                android:textSize="25dp"
+                android:textColor="@color/verdePrinciapl"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:singleLine="true"
+                />
+
+    <TextView
+        android:id="@+id/usuario_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/img_user"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:gravity="center_vertical"
+        android:text="usuário:"
+        android:textColor="@color/verdePrinciapl"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/usuario_nome_set"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/img_user"
+        android:text="nome do usuario"
+        android:layout_toEndOf="@id/usuario_nome"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/verdePrinciapl"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp"
+        android:layout_marginEnd="10dp"
+        android:singleLine="true"
+        />
+
+    <TextView
+        android:id="@+id/usuario_email"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/usuario_nome"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:gravity="center_vertical"
+        android:layout_alignTop="@id/usuario_email_get"
+        android:text="Email:"
+        android:textColor="@color/verdePrinciapl"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/usuario_email_get"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@id/usuario_nome"
+        android:layout_marginTop="10dp"
+        android:text="email do usuário"
+        android:layout_toEndOf="@id/usuario_email"
+        android:gravity="center_vertical"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/verdePrinciapl"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp"
+        android:layout_marginEnd="10dp"
+        android:singleLine="true"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_numeros_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/usuario_email_get"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/tag_color"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/icon_tag"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/icon_tag"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="5dp"
+                />
+
+            <TextView
+                android:id="@+id/numero_ideias_criadas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/icon_tag"
+                android:layout_marginStart="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:text="Numero Ideias 2"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

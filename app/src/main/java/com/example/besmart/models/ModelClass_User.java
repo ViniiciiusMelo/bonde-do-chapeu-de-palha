@@ -9,6 +9,8 @@ public class ModelClass_User {
     private int ideiawritings;
     private String photoLink;
 
+    public ModelClass_User (){}
+
     public ModelClass_User(String name, String email, String status, int ideiaApproved, int ideiawritings, String photoLink) {
         this.name = name;
         this.email = email;

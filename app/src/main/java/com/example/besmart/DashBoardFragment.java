@@ -1,42 +1,43 @@
 package com.example.besmart;
 
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.besmart.models.ModelClass_User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class DashBoardFragment extends Fragment {
 
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
+    private TextView numeroIdeias ;
+    private TextView nomeUsuario;
+    private TextView emailusuario;
+    private TextView usuarioNomeSet;
 
     public DashBoardFragment() {
-        // Required empty public constructor
-    }
 
-    public static DashBoardFragment newInstance(String param1, String param2) {
-        DashBoardFragment fragment = new DashBoardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -44,6 +45,41 @@ public class DashBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dash_board, container, false);
+        View  v =  inflater.inflate(R.layout.fragment_dash_board, container, false);
+
+        nomeUsuario = v.findViewById(R.id.nome_do_usuario_aqui);
+        emailusuario = v.findViewById(R.id.usuario_email_get);
+        usuarioNomeSet = v.findViewById(R.id.usuario_nome_set);
+
+
+        FirebaseFirestore fb = FirebaseFirestore.getInstance();
+        FirebaseAuth fba = FirebaseAuth.getInstance();
+
+        DocumentReference  doc = fb.collection("User").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    ModelClass_User user = documentSnapshot.toObject(ModelClass_User.class);
+                    nomeUsuario.setText(user.getName());
+                    emailusuario.setText(user.getEmail());
+                    usuarioNomeSet.setText(user.getName());
+
+                    Toast.makeText(getContext(), "UsuarioEncontrado", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(), "Error ao encontrar Usuario", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
+        return v;
     }
 }
