@@ -1,13 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    >
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_item_minhas_ideias"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="IDEIA"
-        />
+        android:layout_height="130dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/dada"
+                android:layout_width="10dp"
+                android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/verdeQuartenario"
+                />
+
+            <TextView
+                android:id="@+id/titulo_ideia_item"
+                android:layout_width="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/dada"
+                android:layout_alignTop="@id/dada"
+                android:textColor="@color/verdeTerciario"
+                android:text="Titulo"
+                android:textSize="25sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="12dp"
+                android:singleLine="true"
+                />
+
+            <TextView
+                android:id="@+id/descrip_ideia_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/verdeTerciario"
+                android:text="Descrição"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="12dp"
+                android:layout_below="@id/titulo_ideia_item"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:layout_alignStart="@id/titulo_ideia_item"
+                />
+
+            <TextView
+                android:id="@+id/nome_do_usuario_ideia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text=" @Nome"
+                android:layout_alignStart="@id/titulo_ideia_item"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/verdeTerciario"
+                android:textSize="20sp"
+                android:layout_toStartOf="@id/qnt_likes_item"
+                android:layout_marginEnd="10dp"
+                />
+
+
+
+                    <TextView
+                        android:id="@+id/qnt_likes_item"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:text="12"
+                        android:textColor="@color/verdeTerciario"
+                        android:layout_alignBottom="@id/nome_do_usuario_ideia"
+                        android:layout_toStartOf="@id/icon_joinha"
+                        android:layout_marginEnd="7dp"
+                        android:textSize="18dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/icon_joinha"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/ic_joinha"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignBottom="@id/nome_do_usuario_ideia"
+                        android:layout_marginEnd="10dp"
+                        />
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

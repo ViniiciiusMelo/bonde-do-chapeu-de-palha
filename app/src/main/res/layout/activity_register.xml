@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/container_registro"
     tools:context=".models.RegisterActivity">
 
     <ImageView
@@ -14,14 +15,6 @@
         android:layout_alignParentTop="true"
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/photo_button"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/buttonPhoto"
-        />
 
     <EditText
         android:id="@+id/name_field"

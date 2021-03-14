@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeSmart">
+
         <activity android:name=".ActivityNavi"></activity>
         <activity android:name=".models.RegisterActivity" />
         <activity android:name=".MainActivity">

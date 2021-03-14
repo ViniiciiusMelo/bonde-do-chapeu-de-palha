@@ -1,8 +1,12 @@
 package com.example.besmart.models;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,11 +16,20 @@ import android.widget.Toast;
 import com.example.besmart.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -26,6 +39,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText senhaUser;
     private EditText nomeUser;
     private MaterialButton addPhoto;
+    private Uri imageUri;
+    private FirebaseStorage storage;
+    private StorageReference sr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +54,20 @@ public class RegisterActivity extends AppCompatActivity {
         emailUser = findViewById(R.id.email_field);
         senhaUser = findViewById(R.id.password_field);
         nomeUser = findViewById(R.id.name_field);
-        addPhoto = findViewById(R.id.photo_button);
 
         FirebaseFirestore fb = FirebaseFirestore.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        storage = FirebaseStorage.getInstance();
+        sr = storage.getReference();
+
+        imageUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pegaFoto();
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +109,57 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
                 }
+            }
+        });
+    }
+
+    private void pegaFoto() {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && requestCode == RESULT_OK && data!= null && data.getData() !=null ){
+            imageUri = data.getData();
+            imageUser.setImageURI(imageUri);
+            UploadImage();
+        }
+    }
+
+    private void UploadImage() {
+
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Uploading Image");
+        pd.show();
+
+        final String randomKey = UUID.randomUUID().toString();
+        StorageReference riverRef = sr.child("image/"+randomKey);
+
+        riverRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                pd.dismiss();
+                Snackbar.make(findViewById(R.id.container_registro),"Image Uploaded",Snackbar.LENGTH_LONG).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progress = (100.00 * snapshot.getBytesTransferred()/ snapshot.getTotalByteCount());
+
             }
         });
     }

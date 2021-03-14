@@ -7,37 +7,57 @@
     android:layout_height="match_parent"
     tools:context=".CrieIdeiaFragment">
 
+
     <EditText
         android:id="@+id/titlo_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/title_ideia"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:hint="Título da ideia"
+        android:textSize="25dp"
+        android:maxLength="25"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/verdeTerciario"
+        android:textColorHint="@color/verdeTerciario"
+        android:backgroundTint="@color/verdeTerciario"
         />
 
     <EditText
         android:id="@+id/edit_descrip"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:hint="@string/descrip_ideia"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:hint="Descrição"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/titlo_text"
         android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
+        android:gravity="start"
+        android:textColor="@color/verdePrinciapl"
+        android:textSize="20dp"
+        android:textColorHint="@color/verdePrinciapl"
         android:maxLength="300"
+        android:backgroundTint="@color/white"
         />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_save_ideia"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_below="@id/edit_descrip"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="@string/buttonSave"
+        android:backgroundTint="@color/verdeSecundario"
+        android:textColor="@color/cinzaProjeto"
         />
 
 
