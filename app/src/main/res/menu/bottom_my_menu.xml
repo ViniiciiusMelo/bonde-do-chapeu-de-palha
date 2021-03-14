@@ -4,23 +4,24 @@
     <item
         android:id="@+id/feedFragment"
         android:title="Feed"
-        android:icon="@drawable/icon_feed"
+        android:icon="@drawable/icon_feed_reborn"
         />
     <item
         android:id="@+id/dashBoardFragment"
         android:title="Dash"
-        android:icon="@drawable/icon_dash"
+        android:icon="@drawable/icon_dash_reborn"
+        android:iconTint="@color/white"
         />
     <item
         android:id="@+id/crieIdeiaFragment"
         android:title="Ideia"
-        android:icon="@drawable/icon_add"
+        android:icon="@drawable/icon_deia"
         />
 
     <item
         android:id="@+id/minhasIdeiasFragment"
         android:title="Mideias"
-        android:icon="@drawable/icon_minhas"
-
+        android:icon="@drawable/icon_my"
         />
+
 </menu>

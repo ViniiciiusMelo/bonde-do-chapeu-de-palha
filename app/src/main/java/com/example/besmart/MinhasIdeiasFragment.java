@@ -5,10 +5,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+
+import com.example.besmart.models.MinhasIdeiasAdapter;
 import com.example.besmart.models.ModelClass_Ideia;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -23,7 +28,7 @@ public class MinhasIdeiasFragment extends Fragment {
     private FirebaseAuth fba = FirebaseAuth.getInstance();
     private FirebaseFirestore fb;
     private RecyclerView rc;
-    private FirestoreRecyclerAdapter adapter;
+    private MinhasIdeiasAdapter adapter;
     private Query query;
 
 
@@ -55,46 +60,17 @@ public class MinhasIdeiasFragment extends Fragment {
                 .setLifecycleOwner(this)
                 .setQuery(queryReborn,ModelClass_Ideia.class)
                 .build();
+        
+          adapter = new MinhasIdeiasAdapter(options);
 
-         adapter = new FirestoreRecyclerAdapter<ModelClass_Ideia, IdeiasViewHolder>(options) {
-            @NonNull
-            @Override
-            public IdeiasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_minhas_ideias,parent,false);
-
-                return new IdeiasViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull IdeiasViewHolder holder, int position, @NonNull ModelClass_Ideia model) {
-                holder.nameIdeia.setText(model.getTitulo());
-                holder.descripIdeia.setText(model.getDescricao());
-                //fazer a busca do usuario que esta e setar o nome dele
-                holder.nomeUser.setText("@Vinicius");
-
-            }
-        };
-
-         rc.setHasFixedSize(true);
-         rc.setLayoutManager(new LinearLayoutManager(getContext()));
-         rc.setAdapter(adapter);
+          rc.setHasFixedSize(true);
+          rc.setLayoutManager(new LinearLayoutManager(getContext()));
+          rc.setAdapter(adapter);
 
         return v;
     }
 
-    private class IdeiasViewHolder extends RecyclerView.ViewHolder{
-        private TextView nameIdeia;
-        private TextView nomeUser;
-        private TextView descripIdeia;
-        public IdeiasViewHolder(@NonNull View itemView) {
-            super(itemView);
 
-            nameIdeia = itemView.findViewById(R.id.titulo_ideia_item);
-            nomeUser = itemView.findViewById(R.id.nome_do_usuario_ideia);
-            descripIdeia = itemView.findViewById(R.id.descrip_ideia_item);
-        }
-    }
 
     @Override
     public void onStop() {
@@ -107,4 +83,5 @@ public class MinhasIdeiasFragment extends Fragment {
         super.onStart();
         adapter.startListening();
     }
+
 }
